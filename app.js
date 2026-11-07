@@ -1,6 +1,6 @@
 /**
  * Application Engine for CV Page
- * Handles multilingual rendering, responsive behavior, 3D flip avatar, and direct print/PDF execution.
+ * Handles multilingual rendering, responsive behavior, 3D flip avatar, dark mode, and direct print/PDF execution.
  */
 
 (function () {
@@ -21,6 +21,7 @@
     candidateTitle: document.getElementById("candidate-title"),
     candidateSubtitle: document.getElementById("candidate-subtitle"),
     candidatePhoto: document.getElementById("candidate-photo"),
+    avatarFlip: document.getElementById("avatar-flip"),
     locationText: document.getElementById("location-text"),
     phoneLink: document.getElementById("phone-link"),
     emailLink: document.getElementById("email-link"),
@@ -224,15 +225,16 @@
     }
 
     // Update avatar tooltip
-    const avatarFlip = document.getElementById("avatar-flip");
-    if (avatarFlip) {
-      const isFlipped = avatarFlip.classList.contains("flipped");
-      avatarFlip.setAttribute(
+    if (elements.avatarFlip) {
+      const isFlipped = elements.avatarFlip.classList.contains("flipped");
+      elements.avatarFlip.setAttribute(
         "title",
         isFlipped
           ? (lang === "pl" ? "Kliknij, aby zobaczyć inicjały" : "Click to view initials")
           : (lang === "pl" ? "Kliknij, aby zobaczyć zdjęcie" : "Click to view photo")
       );
+    }
+
     updateThemeToggleLabel();
   }
 
@@ -291,12 +293,11 @@
   });
 
   // 3D Avatar Flip Interaction (Initials <-> Photo)
-  const avatarFlip = document.getElementById("avatar-flip");
-  if (avatarFlip) {
+  if (elements.avatarFlip) {
     const toggleAvatar = () => {
-      avatarFlip.classList.toggle("flipped");
-      const isFlipped = avatarFlip.classList.contains("flipped");
-      avatarFlip.setAttribute(
+      elements.avatarFlip.classList.toggle("flipped");
+      const isFlipped = elements.avatarFlip.classList.contains("flipped");
+      elements.avatarFlip.setAttribute(
         "title",
         isFlipped
           ? (currentLang === "pl" ? "Kliknij, aby zobaczyć inicjały" : "Click to view initials")
@@ -304,8 +305,8 @@
       );
     };
 
-    avatarFlip.addEventListener("click", toggleAvatar);
-    avatarFlip.addEventListener("keydown", e => {
+    elements.avatarFlip.addEventListener("click", toggleAvatar);
+    elements.avatarFlip.addEventListener("keydown", e => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         toggleAvatar();
