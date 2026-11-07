@@ -272,29 +272,7 @@ body {
   border-color: #60a5fa;
 }
 
-/* Subtle flip indicator badge */
-.avatar-flip-hint {
-  position: absolute;
-  bottom: -2px;
-  right: -2px;
-  width: 22px;
-  height: 22px;
-  background-color: #ffffff;
-  border: 1px solid var(--border-medium);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-  font-size: 11px;
-  color: var(--primary);
-  pointer-events: none;
-  transition: transform 0.2s ease;
-}
 
-.avatar-flip-container:hover .avatar-flip-hint {
-  transform: scale(1.15) rotate(45deg);
-}
 
 /* Competencies Section */
 .competencies-grid {
@@ -722,10 +700,6 @@ body {
 
   .candidate-subtitle {
     font-size: 10pt !important;
-  }
-
-  .avatar-flip-hint {
-    display: none !important;
   }
 
   .avatar-flip-container {
