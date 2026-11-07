@@ -379,8 +379,28 @@
     if (e.key === "Escape") hideModal();
   });
 
-  if (elements.btnOpenTab) elements.btnOpenTab.addEventListener("click", openInNewTab);
-  if (elements.btnDownloadHtml) elements.btnDownloadHtml.addEventListener("click", downloadHtmlFile);
+  // 3D Avatar Flip Interaction (Initials <-> Photo)
+  const avatarFlip = document.getElementById("avatar-flip");
+  if (avatarFlip) {
+    const toggleAvatar = () => {
+      avatarFlip.classList.toggle("flipped");
+      const isFlipped = avatarFlip.classList.contains("flipped");
+      avatarFlip.setAttribute(
+        "title",
+        isFlipped
+          ? (currentLang === "pl" ? "Kliknij, aby zobaczyć inicjały" : "Click to view initials")
+          : (currentLang === "pl" ? "Kliknij, aby zobaczyć zdjęcie" : "Click to view photo")
+      );
+    };
+
+    avatarFlip.addEventListener("click", toggleAvatar);
+    avatarFlip.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggleAvatar();
+      }
+    });
+  }
 
   renderCV(currentLang);
 })();

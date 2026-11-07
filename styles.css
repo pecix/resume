@@ -198,39 +198,102 @@ body {
   font-weight: 400;
 }
 
-/* Candidate Photo & Monogram Avatar */
-.candidate-photo-wrapper {
+/* Interactive 3D Flip Avatar (Initials <-> Photo) */
+.avatar-flip-container {
   flex-shrink: 0;
   width: 84px;
   height: 84px;
+  perspective: 1000px;
+  cursor: pointer;
+  outline: none;
   border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid var(--primary-border);
-  box-shadow: var(--shadow-md);
-  background-color: #ffffff;
+  user-select: none;
+  position: relative;
 }
 
-.candidate-photo {
+.avatar-flip-container:focus-visible {
+  box-shadow: 0 0 0 3px var(--primary-border), 0 0 0 5px var(--primary);
+}
+
+.avatar-flip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.34, 1.4, 0.64, 1);
+  box-shadow: var(--shadow-md);
+}
+
+.avatar-flip-container.flipped .avatar-flip-card {
+  transform: rotateY(180deg);
+}
+
+.avatar-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 3px solid var(--primary-border);
+}
+
+.avatar-front {
+  background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  z-index: 2;
+  transform: rotateY(0deg);
+  transition: border-color 0.2s ease;
+}
+
+.avatar-back {
+  background-color: #ffffff;
+  transform: rotateY(180deg);
+}
+
+.avatar-back .candidate-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.header-badge {
-  flex-shrink: 0;
-  width: 84px;
-  height: 84px;
+.avatar-flip-container:hover .avatar-front {
+  border-color: #60a5fa;
+}
+
+/* Subtle flip indicator badge */
+.avatar-flip-hint {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 22px;
+  height: 22px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-medium);
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
-  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  font-size: 11px;
+  color: var(--primary);
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.avatar-flip-container:hover .avatar-flip-hint {
+  transform: scale(1.15) rotate(45deg);
 }
 
 /* Competencies Section */
@@ -661,14 +724,48 @@ body {
     font-size: 10pt !important;
   }
 
-  .header-badge,
-  .candidate-photo-wrapper {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+  .avatar-flip-hint {
+    display: none !important;
+  }
+
+  .avatar-flip-container {
+    perspective: none !important;
     width: 60px !important;
     height: 60px !important;
     border-radius: 50% !important;
+  }
+
+  .avatar-flip-card {
+    box-shadow: none !important;
+    transform-style: flat !important;
+    transition: none !important;
+  }
+
+  .avatar-face {
+    border: 2pt solid #1e3a8a !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* When not flipped, print initials cleanly */
+  .avatar-flip-container:not(.flipped) .avatar-front {
+    display: flex !important;
+    transform: none !important;
     font-size: 16pt !important;
+  }
+
+  .avatar-flip-container:not(.flipped) .avatar-back {
+    display: none !important;
+  }
+
+  /* When flipped, print photo cleanly */
+  .avatar-flip-container.flipped .avatar-front {
+    display: none !important;
+  }
+
+  .avatar-flip-container.flipped .avatar-back {
+    display: flex !important;
+    transform: none !important;
   }
 
   .section-title {
