@@ -14,7 +14,17 @@ const cvData = {
       educationTitle: "Edukacja i wykształcenie",
       languagesTitle: "Języki obce",
       aboutTitle: "Podsumowanie zawodowe",
-      keyAchievementsTitle: "Kluczowe osiągnięcia i zakres odpowiedzialności:"
+      keyAchievementsTitle: "Kluczowe osiągnięcia i zakres odpowiedzialności:",
+      printModal: {
+        title: "Drukowanie / Zapis do PDF",
+        desc: "Przeglądarki na tabletach i smartfonach (zwłaszcza Safari na iPadzie) ze względów bezpieczeństwa blokują wywołanie systemowego okna drukowania z wewnątrz osadzonej ramki podglądu (iframe).",
+        openTab: "Otwórz stronę w nowej karcie (Zalecane)",
+        downloadHtml: "Pobierz plik CV (.html) na urządzenie",
+        tipTitle: "💡 Jak zapisać do PDF na iPadzie / tablecie:",
+        tipStep1: "Kliknij „Otwórz stronę w nowej karcie” powyżej.",
+        tipStep2: "W nowej karcie kliknij „Drukuj” lub użyj menu przeglądarki (ikona Udostępnij ⎋ → Drukuj).",
+        tipStep3: "W oknie podglądu wydruku rozsuń dwoma palcami podgląd (gest pinch-to-zoom) lub kliknij ikonę udostępnienia i wybierz „Zapisz w Plikach”, by uzyskać gotowy plik PDF A4!"
+      }
     },
     personal: {
       name: "Artur Petrusiewicz",
@@ -125,7 +135,17 @@ const cvData = {
       educationTitle: "Education",
       languagesTitle: "Languages",
       aboutTitle: "Professional Summary",
-      keyAchievementsTitle: "Key Responsibilities & Achievements:"
+      keyAchievementsTitle: "Key Responsibilities & Achievements:",
+      printModal: {
+        title: "Print / Save to PDF",
+        desc: "Mobile and tablet browsers (especially Safari on iPad) block system print dialogs from inside embedded preview frames (iframes) for security reasons.",
+        openTab: "Open in New Tab (Recommended)",
+        downloadHtml: "Download CV (.html) to device",
+        tipTitle: "💡 How to save as PDF on iPad / tablet:",
+        tipStep1: "Click 'Open in New Tab' above.",
+        tipStep2: "In the new tab, click 'Print' or use the browser Share menu (⎋ → Print).",
+        tipStep3: "In the print preview, pinch outward with two fingers (zoom-out) or tap Share to Files to save as a clean A4 PDF document!"
+      }
     },
     personal: {
       name: "Artur Petrusiewicz",

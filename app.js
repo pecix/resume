@@ -1,18 +1,22 @@
 /**
  * Application Engine for CV Page
- * Handles multilingual rendering and print actions
+ * Handles multilingual rendering, responsive behavior, and print/PDF support across desktop and tablet/mobile devices.
  */
 
 (function () {
-  // Default language or saved preference
   let currentLang = localStorage.getItem("preferred_lang") || "pl";
+
+  const isIframe = window.self !== window.top;
+  const isTouchOrMobile =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+    (navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
 
   const elements = {
     langPlBtn: document.getElementById("lang-pl"),
     langEnBtn: document.getElementById("lang-en"),
     printBtn: document.getElementById("btn-print"),
     printBtnText: document.getElementById("btn-print-text"),
-    
+
     // Personal info
     candidateName: document.getElementById("candidate-name"),
     candidateTitle: document.getElementById("candidate-title"),
@@ -21,21 +25,35 @@
     locationText: document.getElementById("location-text"),
     emailLink: document.getElementById("email-link"),
     githubLink: document.getElementById("github-link"),
-    
+
     // Section Titles
     aboutTitle: document.getElementById("about-title"),
     skillsTitle: document.getElementById("skills-title"),
     experienceTitle: document.getElementById("experience-title"),
     educationTitle: document.getElementById("education-title"),
     languagesTitle: document.getElementById("languages-title"),
-    
+
     // Containers
     summaryContainer: document.getElementById("summary-container"),
     skillsContainer: document.getElementById("skills-container"),
     experienceContainer: document.getElementById("experience-container"),
     educationContainer: document.getElementById("education-container"),
     languagesContainer: document.getElementById("languages-container"),
-    rodoContainer: document.getElementById("rodo-container")
+    rodoContainer: document.getElementById("rodo-container"),
+
+    // Modal elements
+    printModal: document.getElementById("print-modal"),
+    modalClose: document.getElementById("modal-close"),
+    modalTitleText: document.getElementById("modal-title-text"),
+    modalDesc: document.getElementById("modal-desc"),
+    btnOpenTab: document.getElementById("btn-open-tab"),
+    btnOpenTabText: document.getElementById("btn-open-tab-text"),
+    btnDownloadHtml: document.getElementById("btn-download-html"),
+    btnDownloadHtmlText: document.getElementById("btn-download-html-text"),
+    modalTipTitle: document.getElementById("modal-tip-title"),
+    modalTipS1: document.getElementById("modal-tip-s1"),
+    modalTipS2: document.getElementById("modal-tip-s2"),
+    modalTipS3: document.getElementById("modal-tip-s3")
   };
 
   function renderCV(lang) {
@@ -171,6 +189,19 @@
     } else {
       elements.rodoContainer.style.display = "none";
     }
+
+    // Update Modal texts
+    if (data.meta.printModal && elements.modalTitleText) {
+      const pm = data.meta.printModal;
+      elements.modalTitleText.textContent = pm.title;
+      elements.modalDesc.textContent = pm.desc;
+      elements.btnOpenTabText.textContent = pm.openTab;
+      elements.btnDownloadHtmlText.textContent = pm.downloadHtml;
+      elements.modalTipTitle.textContent = pm.tipTitle;
+      elements.modalTipS1.textContent = pm.tipStep1;
+      elements.modalTipS2.textContent = pm.tipStep2;
+      elements.modalTipS3.textContent = pm.tipStep3;
+    }
   }
 
   function escapeHTML(str) {
@@ -181,6 +212,109 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
+  }
+
+  function showModal() {
+    if (elements.printModal) {
+      elements.printModal.classList.add("active");
+      elements.printModal.setAttribute("aria-hidden", "false");
+    }
+  }
+
+  function hideModal() {
+    if (elements.printModal) {
+      elements.printModal.classList.remove("active");
+      elements.printModal.setAttribute("aria-hidden", "true");
+    }
+  }
+
+  function buildFullStandaloneHtml() {
+    // Clone document with inlined stylesheet so it renders identically anywhere
+    const styles = Array.from(document.querySelectorAll("style, link[rel='stylesheet']"))
+      .map(tag => {
+        if (tag.tagName.toLowerCase() === "style") return tag.outerHTML;
+        return tag.outerHTML;
+      })
+      .join("\n");
+
+    const cvContainer = document.querySelector(".cv-container").outerHTML;
+
+    return `<!DOCTYPE html>
+<html lang="${currentLang}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${escapeHTML(document.title)}</title>
+  ${styles}
+  <style>
+    /* Ensure clean direct print view */
+    body { padding: 20px 0; }
+    .direct-print-bar {
+      max-width: 900px;
+      margin: 0 auto 20px auto;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 0 10px;
+    }
+    @media print {
+      body { padding: 0 !important; }
+      .direct-print-bar { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="direct-print-bar">
+    <button onclick="window.print()" style="background:#1e3a8a;color:#fff;border:none;padding:10px 20px;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+      🖨️ ${currentLang === 'pl' ? 'Wydrukuj / Zapisz jako PDF' : 'Print / Save as PDF'}
+    </button>
+  </div>
+  ${cvContainer}
+</body>
+</html>`;
+  }
+
+  function openInNewTab() {
+    const html = buildFullStandaloneHtml();
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+    const blobUrl = URL.createObjectURL(blob);
+    const win = window.open(blobUrl, "_blank");
+    if (!win) {
+      window.location.href = blobUrl;
+    }
+  }
+
+  function downloadHtmlFile() {
+    const html = buildFullStandaloneHtml();
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+    const blobUrl = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = blobUrl;
+    a.download = `Artur_Petrusiewicz_CV_${currentLang.toUpperCase()}.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 3000);
+  }
+
+  // Handle Print button click
+  function handlePrint() {
+    // If inside an iframe or on a mobile/tablet touch device, always open the helpful modal
+    if (isIframe || isTouchOrMobile) {
+      // Also try calling window.print() inside a try/catch just in case the browser allows it
+      try {
+        window.print();
+      } catch (err) {
+        console.warn("window.print() blocked in iframe:", err);
+      }
+      showModal();
+    } else {
+      try {
+        window.print();
+      } catch (err) {
+        showModal();
+      }
+    }
   }
 
   // Event Listeners
@@ -196,9 +330,29 @@
     renderCV("en");
   });
 
-  elements.printBtn.addEventListener("click", () => {
-    window.print();
+  elements.printBtn.addEventListener("click", handlePrint);
+
+  if (elements.modalClose) {
+    elements.modalClose.addEventListener("click", hideModal);
+  }
+
+  if (elements.printModal) {
+    elements.printModal.addEventListener("click", e => {
+      if (e.target === elements.printModal) hideModal();
+    });
+  }
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") hideModal();
   });
+
+  if (elements.btnOpenTab) {
+    elements.btnOpenTab.addEventListener("click", openInNewTab);
+  }
+
+  if (elements.btnDownloadHtml) {
+    elements.btnDownloadHtml.addEventListener("click", downloadHtmlFile);
+  }
 
   // Initial Render
   renderCV(currentLang);
