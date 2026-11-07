@@ -1,15 +1,10 @@
 /**
  * Application Engine for CV Page
- * Handles multilingual rendering, responsive behavior, and print/PDF support across desktop and tablet/mobile devices.
+ * Handles multilingual rendering, responsive behavior, 3D flip avatar, and direct print/PDF execution.
  */
 
 (function () {
   let currentLang = localStorage.getItem("preferred_lang") || "pl";
-
-  const isIframe = window.self !== window.top;
-  const isTouchOrMobile =
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-    (navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
 
   const elements = {
     langPlBtn: document.getElementById("lang-pl"),
@@ -46,21 +41,7 @@
     projectsContainer: document.getElementById("projects-container"),
     educationContainer: document.getElementById("education-container"),
     languagesContainer: document.getElementById("languages-container"),
-    rodoContainer: document.getElementById("rodo-container"),
-
-    // Modal elements
-    printModal: document.getElementById("print-modal"),
-    modalClose: document.getElementById("modal-close"),
-    modalTitleText: document.getElementById("modal-title-text"),
-    modalDesc: document.getElementById("modal-desc"),
-    btnOpenTab: document.getElementById("btn-open-tab"),
-    btnOpenTabText: document.getElementById("btn-open-tab-text"),
-    btnDownloadHtml: document.getElementById("btn-download-html"),
-    btnDownloadHtmlText: document.getElementById("btn-download-html-text"),
-    modalTipTitle: document.getElementById("modal-tip-title"),
-    modalTipS1: document.getElementById("modal-tip-s1"),
-    modalTipS2: document.getElementById("modal-tip-s2"),
-    modalTipS3: document.getElementById("modal-tip-s3")
+    rodoContainer: document.getElementById("rodo-container")
   };
 
   function renderCV(lang) {
@@ -150,7 +131,7 @@
       })
       .join("");
 
-    // Competencies / Cechy i mocne strony
+    // Competencies
     if (elements.competenciesContainer && data.competencies) {
       elements.competenciesContainer.innerHTML = data.competencies
         .map(comp => `<div class="competency-item"><span>${escapeHTML(comp)}</span></div>`)
@@ -238,17 +219,16 @@
       elements.rodoContainer.style.display = "none";
     }
 
-    // Update Modal texts
-    if (data.meta.printModal && elements.modalTitleText) {
-      const pm = data.meta.printModal;
-      elements.modalTitleText.textContent = pm.title;
-      elements.modalDesc.textContent = pm.desc;
-      elements.btnOpenTabText.textContent = pm.openTab;
-      elements.btnDownloadHtmlText.textContent = pm.downloadHtml;
-      elements.modalTipTitle.textContent = pm.tipTitle;
-      elements.modalTipS1.textContent = pm.tipStep1;
-      elements.modalTipS2.textContent = pm.tipStep2;
-      elements.modalTipS3.textContent = pm.tipStep3;
+    // Update avatar tooltip
+    const avatarFlip = document.getElementById("avatar-flip");
+    if (avatarFlip) {
+      const isFlipped = avatarFlip.classList.contains("flipped");
+      avatarFlip.setAttribute(
+        "title",
+        isFlipped
+          ? (lang === "pl" ? "Kliknij, aby zobaczyć inicjały" : "Click to view initials")
+          : (lang === "pl" ? "Kliknij, aby zobaczyć zdjęcie" : "Click to view photo")
+      );
     }
   }
 
@@ -262,99 +242,7 @@
       .replace(/'/g, "&#039;");
   }
 
-  function showModal() {
-    if (elements.printModal) {
-      elements.printModal.classList.add("active");
-      elements.printModal.setAttribute("aria-hidden", "false");
-    }
-  }
-
-  function hideModal() {
-    if (elements.printModal) {
-      elements.printModal.classList.remove("active");
-      elements.printModal.setAttribute("aria-hidden", "true");
-    }
-  }
-
-  function buildFullStandaloneHtml() {
-    const styles = Array.from(document.querySelectorAll("style, link[rel='stylesheet']"))
-      .map(tag => tag.outerHTML)
-      .join("\n");
-
-    const cvContainer = document.querySelector(".cv-container").outerHTML;
-
-    return `<!DOCTYPE html>
-<html lang="${currentLang}">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${escapeHTML(document.title)}</title>
-  ${styles}
-  <style>
-    body { padding: 20px 0; }
-    .direct-print-bar {
-      max-width: 900px;
-      margin: 0 auto 20px auto;
-      display: flex;
-      justify-content: flex-end;
-      gap: 12px;
-      padding: 0 10px;
-    }
-    @media print {
-      body { padding: 0 !important; }
-      .direct-print-bar { display: none !important; }
-    }
-  </style>
-</head>
-<body>
-  <div class="direct-print-bar">
-    <button onclick="window.print()" style="background:#1e3a8a;color:#fff;border:none;padding:10px 20px;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.1);">
-      🖨️ ${currentLang === 'pl' ? 'Wydrukuj / Zapisz jako PDF' : 'Print / Save as PDF'}
-    </button>
-  </div>
-  ${cvContainer}
-</body>
-</html>`;
-  }
-
-  function openInNewTab() {
-    const html = buildFullStandaloneHtml();
-    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
-    const blobUrl = URL.createObjectURL(blob);
-    const win = window.open(blobUrl, "_blank");
-    if (!win) {
-      window.location.href = blobUrl;
-    }
-  }
-
-  function downloadHtmlFile() {
-    const html = buildFullStandaloneHtml();
-    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
-    const blobUrl = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = blobUrl;
-    a.download = `Artur_Petrusiewicz_CV_${currentLang.toUpperCase()}.html`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(blobUrl), 3000);
-  }
-
-  function handlePrint() {
-    if (isIframe || isTouchOrMobile) {
-      try {
-        window.print();
-      } catch (e) {}
-      showModal();
-    } else {
-      try {
-        window.print();
-      } catch (e) {
-        showModal();
-      }
-    }
-  }
-
+  // Event Listeners
   elements.langPlBtn.addEventListener("click", () => {
     currentLang = "pl";
     localStorage.setItem("preferred_lang", "pl");
@@ -367,16 +255,9 @@
     renderCV("en");
   });
 
-  elements.printBtn.addEventListener("click", handlePrint);
-
-  if (elements.modalClose) elements.modalClose.addEventListener("click", hideModal);
-  if (elements.printModal) {
-    elements.printModal.addEventListener("click", e => {
-      if (e.target === elements.printModal) hideModal();
-    });
-  }
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") hideModal();
+  // Direct print trigger (without modal prompt)
+  elements.printBtn.addEventListener("click", () => {
+    window.print();
   });
 
   // 3D Avatar Flip Interaction (Initials <-> Photo)
