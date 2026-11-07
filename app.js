@@ -5,10 +5,14 @@
 
 (function () {
   let currentLang = localStorage.getItem("preferred_lang") || "pl";
+  let currentTheme =
+    localStorage.getItem("preferred_theme") ||
+    (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 
   const elements = {
     langPlBtn: document.getElementById("lang-pl"),
     langEnBtn: document.getElementById("lang-en"),
+    themeToggle: document.getElementById("theme-toggle"),
     printBtn: document.getElementById("btn-print"),
     printBtnText: document.getElementById("btn-print-text"),
 
@@ -229,6 +233,24 @@
           ? (lang === "pl" ? "Kliknij, aby zobaczyć inicjały" : "Click to view initials")
           : (lang === "pl" ? "Kliknij, aby zobaczyć zdjęcie" : "Click to view photo")
       );
+    updateThemeToggleLabel();
+  }
+
+  function applyTheme(theme) {
+    currentTheme = theme;
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("preferred_theme", theme);
+    updateThemeToggleLabel();
+  }
+
+  function updateThemeToggleLabel() {
+    if (elements.themeToggle) {
+      const isDark = currentTheme === "dark";
+      const title = currentLang === "pl"
+        ? (isDark ? "Przełącz na motyw jasny" : "Przełącz na motyw ciemny")
+        : (isDark ? "Switch to light theme" : "Switch to dark theme");
+      elements.themeToggle.setAttribute("title", title);
+      elements.themeToggle.setAttribute("aria-label", title);
     }
   }
 
@@ -254,6 +276,14 @@
     localStorage.setItem("preferred_lang", "en");
     renderCV("en");
   });
+
+  // Dark/Light Theme Toggle
+  if (elements.themeToggle) {
+    elements.themeToggle.addEventListener("click", () => {
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+      applyTheme(nextTheme);
+    });
+  }
 
   // Direct print trigger (without modal prompt)
   elements.printBtn.addEventListener("click", () => {
@@ -283,5 +313,6 @@
     });
   }
 
+  applyTheme(currentTheme);
   renderCV(currentLang);
 })();

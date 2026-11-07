@@ -35,6 +35,82 @@
   --radius-full: 9999px;
 }
 
+/* Dark Theme Variables */
+[data-theme="dark"] {
+  --bg-page: #0f172a;
+  --bg-card: #1e293b;
+  --text-main: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --primary: #60a5fa;
+  --primary-hover: #93c5fd;
+  --primary-light: rgba(59, 130, 246, 0.15);
+  --primary-border: #3b82f6;
+
+  --accent-badge: #2dd4bf;
+  --accent-badge-bg: rgba(45, 212, 191, 0.12);
+
+  --border-light: #334155;
+  --border-medium: #475569;
+  --tag-bg: #0f172a;
+  --tag-text: #e2e8f0;
+  --tag-border: #334155;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark theme overrides for cards and components */
+[data-theme="dark"] .action-bar-wrapper {
+  background: rgba(15, 23, 42, 0.92);
+  border-bottom-color: var(--border-light);
+}
+
+[data-theme="dark"] .skill-category-card,
+[data-theme="dark"] .competencies-grid,
+[data-theme="dark"] .edu-card,
+[data-theme="dark"] .lang-card,
+[data-theme="dark"] .project-card {
+  background-color: #0f172a;
+}
+
+[data-theme="dark"] .skill-tag {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .exp-period {
+  background-color: #0f172a;
+  color: #94a3b8;
+  border: 1px solid #334155;
+}
+
+[data-theme="dark"] .badge-tag {
+  border-color: #0d9488;
+}
+
+[data-theme="dark"] .lang-switcher {
+  background-color: #0f172a;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .lang-btn {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .lang-btn.active {
+  background-color: #1e293b;
+  color: #60a5fa;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .avatar-front {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+  border-color: #3b82f6;
+}
+
 /* Reset & Box Sizing */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -117,6 +193,56 @@ body {
 
 .lang-btn:hover:not(.active) {
   color: var(--text-main);
+}
+
+/* Theme Toggle Button */
+.btn-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.15s ease;
+  padding: 0;
+}
+
+.btn-theme-toggle:hover {
+  color: var(--primary);
+  border-color: var(--primary-border);
+}
+
+/* Light/Dark icon visibility */
+.theme-icon-sun {
+  display: none;
+}
+
+.theme-icon-moon {
+  display: block;
+}
+
+[data-theme="dark"] .theme-icon-sun {
+  display: block;
+  color: #fbbf24;
+}
+
+[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
+[data-theme="dark"] .btn-theme-toggle {
+  background-color: #0f172a;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .btn-theme-toggle:hover {
+  border-color: #60a5fa;
+  color: #60a5fa;
 }
 
 /* Print Button */
@@ -670,6 +796,7 @@ body {
   .action-bar-wrapper,
   .action-bar,
   .btn-print,
+  .btn-theme-toggle,
   .lang-switcher {
     display: none !important;
   }
