@@ -1,6 +1,6 @@
 /**
  * Dane CV Artura Petrusiewicza
- * Dedykowany plik danych umożliwiający łatwą edycję i wsparcie dla języka polskiego i angielskiego.
+ * Zsynchronizowane z oryginalnym CV i wzbogacone o pełne 10-letnie doświadczenie komercyjne i inżynieryjne.
  */
 const cvData = {
   pl: {
@@ -9,11 +9,13 @@ const cvData = {
       printBtn: "Drukuj / Pobierz PDF",
       updated: "Ostatnia aktualizacja",
       contactTitle: "Kontakt",
-      skillsTitle: "Umiejętności techniczne",
-      experienceTitle: "Doświadczenie zawodowe i projekty",
-      educationTitle: "Edukacja i wykształcenie",
+      skillsTitle: "Umiejętności i Technologie",
+      experienceTitle: "Doświadczenie zawodowe",
+      projectsTitle: "Kluczowe Projekty",
+      educationTitle: "Edukacja",
       languagesTitle: "Języki obce",
-      aboutTitle: "Podsumowanie zawodowe",
+      aboutTitle: "O mnie",
+      competenciesTitle: "Cechy i kompetencje",
       keyAchievementsTitle: "Kluczowe osiągnięcia i zakres odpowiedzialności:",
       printModal: {
         title: "Drukowanie / Zapis do PDF",
@@ -29,99 +31,129 @@ const cvData = {
     personal: {
       name: "Artur Petrusiewicz",
       title: "Senior Fullstack Developer",
-      subtitle: "10+ lat doświadczenia komercyjnego w projektowaniu i wdrażaniu systemów klasy enterprise",
+      subtitle: "10+ lat doświadczenia · Java (Spring Boot) · TypeScript (Angular) · PostgreSQL",
       location: "Warszawa / Remote",
+      phone: "+48 790 431 020",
+      phoneRaw: "+48790431020",
       email: "pecixx@gmail.com",
+      website: "petrusiewicz.pl",
+      websiteUrl: "https://petrusiewicz.pl",
+      linkedin: "linkedin.com/in/artur-petrusiewicz",
+      linkedinUrl: "https://linkedin.com/in/artur-petrusiewicz",
       github: "https://github.com/pecix",
       githubUser: "github.com/pecix",
-      about: "Doświadczony Senior Fullstack Developer z ponad 10-letnim stażem w inżynierii oprogramowania i architekturze systemów o znaczeniu krytycznym (mission-critical). Specjalizuję się w tworzeniu bezpiecznych, wysoko wydajnych aplikacji webowych w oparciu o ekosystem Java (Spring Boot), relacyjne bazy danych (PostgreSQL) oraz nowoczesny frontend (Angular, TypeScript).\n\nPosiadam unikalne połączenie głębokiej wiedzy technicznej z wykształceniem ekonomicznym, co pozwala mi doskonale rozumieć złożone procesy biznesowe, obrót finansowo-księgowy oraz rygorystyczne wymagania audytowe i prawne. Jako główny programista i współtwórca zrealizowałem od podstaw oraz wdrożyłem ogólnokrajowe systemy klasy Enterprise dla polskiej Służby Więziennej (obsługa kadr funkcjonariuszy oraz pełna księgowość budżetowa i depozytowa)."
+      photo: "artur-petrusiewicz.png",
+      about: "Jestem Senior Fullstack Developerem z ponad 10-letnim doświadczeniem zawodowym, łączącym zaawansowaną inżynierię oprogramowania klasy Enterprise z wykształceniem ekonomicznym i wieloletnią praktyką w obszarze finansów publicznych i księgowości.\n\nKieruję się w życiu zasadą: „Droga do sukcesu jest zawsze w budowie”. Cechuje mnie duże zaangażowanie, wysoka kultura osobista, odporność na stres oraz dążenie do doskonałości w każdym realizowanym zadaniu.\n\nSpecjalizuję się w projektowaniu, implementacji i utrzymaniu skalowalnych, bezpiecznych systemów webowych w oparciu o ekosystem Java (Spring Boot, Kotlin), relacyjne bazy danych (PostgreSQL) oraz nowoczesny frontend (Angular, TypeScript). Jako programista Centralnego Zarządu Służby Więziennej współtworzyłem i wdrażałem ogólnokrajowe systemy o znaczeniu krytycznym, m.in. System Finansowo-Księgowy, Kadrowo-Płacowy oraz moduł e-skierowań."
     },
     skills: [
       {
         category: "Backend & Architektura",
-        items: ["Java", "Spring Boot", "Spring Data / JPA", "Hibernate", "RESTful APIs", "Architektura Enterprise", "Mikrousługi", "Bezpieczeństwo aplikacji (Spring Security)"]
+        items: ["JAVA", "Spring Boot", "Kotlin", "Spring Data / JPA", "Hibernate", "Keycloak", "Spring Security", "RESTful APIs", "Architektura Enterprise"]
       },
       {
         category: "Bazy Danych & SQL",
-        items: ["PostgreSQL", "SQL (zaawansowane zapytania)", "Modelowanie relacyjnych baz danych", "Optymalizacja wydajności zapytań", "Procedury składowane", "Transakcyjność ACID"]
+        items: ["SQL", "PostgreSQL", "Modelowanie relacyjnych baz danych", "Optymalizacja wydajności zapytań", "Procedury składowane", "Spójność transakcyjna (ACID)"]
       },
       {
         category: "Frontend & Web",
-        items: ["TypeScript", "Angular", "HTML5", "CSS3 / SCSS", "Responsive Web Design (RWD)", "State Management", "Integracja API / RxJS"]
+        items: ["TypeScript", "JavaScript", "Angular", "HTML5", "CSS3 / SCSS", "Responsive Web Design (RWD)", "State Management / RxJS"]
       },
       {
-        category: "Narzędzia & Metodologia",
-        items: ["Git / GitHub", "Maven / Gradle", "Docker", "Dobre praktyki Clean Code & SOLID", "Testy jednostkowe i integracyjne", "Metodologie Agile / Scrum", "Zarządzanie bezpieczeństwem danych poufnych"]
+        category: "Testy & Narzędzia",
+        items: ["IDEA IntelliJ", "VS Code", "GIT / GitHub", "JUnit", "Cypress", "Docker", "Maven", "Code Review"]
       }
+    ],
+    competencies: [
+      "Techniczne, koncepcyjne i kreatywne myślenie",
+      "Umiejętności analityczne i planowania architektury",
+      "Dobra i efektywna organizacja pracy własnej oraz zespołu",
+      "Wysoka kultura osobista, prezencja i zdolności komunikacyjne",
+      "Konsekwencja, skuteczność w działaniu i duża odporność na stres",
+      "Inicjatywa, samodzielność oraz zaangażowanie w sukces projektu"
     ],
     experience: [
       {
-        role: "Senior Fullstack Developer / Główny Programista",
-        company: "Służba Więzienna / Projekty Rządowe & Enterprise",
-        period: "2014 – obecnie",
+        role: "Instruktor Biura Informatyki i Łączności / Senior Fullstack Developer",
+        company: "Centralny Zarząd Służby Więziennej",
+        period: "2019 – obecnie",
         location: "Warszawa / Polska",
-        projectBadge: "Projekty Strategiczne",
-        description: "Projektowanie, rozwój architektury oraz pełne wdrożenie produkcyjne dwóch kluczowych ogólnokrajowych systemów informatycznych obsługujących tysiące użytkowników w jednostkach penitencjarnych w całej Polsce.",
-        projects: [
-          {
-            name: "System Finansowo-Księgowy (Służba Więzienna)",
-            role: "Architektura & Rozwój Fullstack (Java, Spring Boot, PostgreSQL, Angular)",
-            summary: "Zaawansowany system centralny do obsługi księgowości budżetowej jednostek penitencjarnych oraz gospodarki depozytowej osób pozbawionych wolności.",
-            points: [
-              "Zaprojektowanie i wdrożenie kompletnego modułu księgowości budżetowej, zgodnego z polskimi przepisami o finansach publicznych i rachunkowości.",
-              "Stworzenie bezpiecznego modułu ewidencji i operacji na środkach finansowych (kontach depozytowych) osób pozbawionych wolności, w tym obsługa potrąceń komorniczych, alimentacyjnych oraz wypłat.",
-              "Zapewnienie pełnej spójności transakcyjnej (ACID) oraz audytowalności każdej operacji finansowej na poziomie bazy danych PostgreSQL.",
-              "Opracowanie intuicyjnego interfejsu w Angular/TypeScript ułatwiającego pracę pracownikom działów finansowych i kadr w kilkudziesięciu jednostkach w kraju."
-            ]
-          },
-          {
-            name: "System Kadrowy (Obsługa Funkcjonariuszy Służby Więziennej)",
-            role: "Architektura & Rozwój Fullstack (Java, Spring Boot, PostgreSQL, Angular)",
-            summary: "Centralny system ewidencji i zarządzania zasobami ludzkimi dla formacji mundurowej.",
-            points: [
-              "Wdrożenie modułów ewidencji przebiegu służby funkcjonariuszy i pracowników cywilnych: etaty, stopnie służbowe, awanse, uposażenia, dodatki branżowe i wysługa lat.",
-              "Automatyzacja naliczania świadczeń, urlopów, delegacji oraz sprawozdawczości kadrowej do centralnych organów nadzorczych.",
-              "Implementacja rygorystycznych mechanizmów kontroli dostępu (Role-Based Access Control) ze względu na przetwarzanie danych niejawnych i wrażliwych.",
-              "Optymalizacja bazy PostgreSQL pod kątem szybkiego generowania zagregowanych raportów i zestawień analitycznych dla kierownictwa formacji."
-            ]
-          }
+        projectBadge: "Służba Więzienna",
+        description: "Projektowanie, wytwarzanie i utrzymywanie oprogramowania na wewnętrzne potrzeby formacji. Praca w zespole inżynierów oprogramowania, prowadzenie code review, udział w spotkaniach architektonicznych i współtworzenie koncepcji wdrażanych programów z Product Ownerami.",
+        points: [
+          "Tworzenie i długoterminowe utrzymywanie systemów webowych klasy Enterprise w architekturze Spring Boot + Angular + PostgreSQL.",
+          "Współpraca w zespołach programistycznych, realizacja procesów Code Review i dbałość o standardy czystego kodu (Clean Code, SOLID).",
+          "Współtworzenie założeń koncepcyjnych i technicznych nowych modułów w bezpośrednim porozumieniu z Product Ownerami i kierownictwem formacji.",
+          "Implementacja mechanizmów bezpieczeństwa i centralnej autoryzacji (Keycloak, RBAC) w celu spełnienia rygorystycznych norm poufności."
         ]
       },
       {
-        role: "Senior Fullstack Software Engineer",
-        company: "Projekty Komercyjne & Doradztwo IT",
-        period: "10+ lat doświadczenia",
-        location: "Warszawa / Zdalnie",
-        projectBadge: "Fullstack Engineering",
-        description: "Wieloletnia praktyka w budowie dedykowanych rozwiązań webowych, integracji systemów z zewnętrznymi API oraz optymalizacji baz danych.",
-        projects: [
-          {
-            name: "Rozwój systemów webowych i integracji API",
-            role: "Fullstack Engineer",
-            summary: "Kompleksowa realizacja aplikacji biznesowych od koncepcji po deployment i utrzymanie.",
-            points: [
-              "Projektowanie skalowalnych architektur backendowych w Spring Boot z wykorzystaniem wzorców projektowych i czystej architektury.",
-              "Tworzenie nowoczesnych, responsywnych interfejsów użytkownika w oparciu o Angular i TypeScript.",
-              "Optymalizacja zapytań SQL, indeksowania i struktury bazy PostgreSQL w celu eliminacji wąskich gardeł wydajnościowych."
-            ]
-          }
+        role: "Technik Działu Finansowego",
+        company: "Areszt Śledczy w Szczecinie",
+        period: "2011 – 2019",
+        location: "Szczecin, Polska",
+        projectBadge: "Finanse & Księgowość",
+        description: "Wieloletnia praca operacyjna w obszarze księgowości budżetowej, kadr i płac, stanowiąca fundament późniejszego sukcesu przy projektowaniu i wdrażaniu systemów informatycznych dla całego więziennictwa.",
+        points: [
+          "Prowadzenie bieżącej księgowości budżetowej jednostki penitencjarnej.",
+          "Sporządzanie i rozliczanie list płac funkcjonariuszy oraz pracowników cywilnych.",
+          "Prowadzenie rozliczeń komorniczych oraz ewidencji środków finansowych i kont depozytowych osób pozbawionych wolności.",
+          "Wystawianie i obsługa deklaracji skarbowych i ubezpieczeniowych, m.in. PIT-11, PIT-8c, ZUS-RP7."
+        ]
+      }
+    ],
+    projects: [
+      {
+        name: "Projektowanie i tworzenie systemu finansowo-księgowego",
+        stack: "Java Spring Boot · Keycloak · PostgreSQL · Angular",
+        summary: "Ogólnokrajowy system centralny do obsługi księgowości budżetowej jednostek penitencjarnych oraz gospodarki depozytowej osób pozbawionych wolności.",
+        points: [
+          "Zaprojektowanie i wdrożenie modułu księgowości budżetowej w oparciu o Spring Boot i Angular.",
+          "Stworzenie bezpiecznego podsystemu depozytowego osób pozbawionych wolności z obsługą potrąceń komorniczych i wypłat.",
+          "Integracja z centralnym serwerem tożsamości Keycloak oraz optymalizacja zapytań w bazie PostgreSQL."
+        ]
+      },
+      {
+        name: "Utrzymanie i modyfikacje systemu kadrowo-płacowego",
+        stack: "Java Spring Boot · Angular · PostgreSQL",
+        summary: "Centralny system ewidencji i zarządzania zasobami ludzkimi dla formacji mundurowej.",
+        points: [
+          "Rozwój modułów ewidencji przebiegu służby funkcjonariuszy: etaty, stopnie służbowe, awanse, dodatki i uposażenia.",
+          "Dostosowywanie algorytmów naliczania świadczeń i generowania sprawozdawczości kadrowej do zmieniającego się otoczenia prawnego."
+        ]
+      },
+      {
+        name: "Implementacja projektu e-skierowania",
+        stack: "Java / Kotlin · Spring Boot · PostgreSQL",
+        summary: "Elektroniczny obieg skierowań medycznych w jednostkach penitencjarnych.",
+        points: [
+          "Projekt i budowa niezawodnego backendu w Java / Kotlin ze Spring Boot i PostgreSQL.",
+          "Zapewnienie rygorystycznej integralności oraz poufności przetwarzanej dokumentacji medycznej."
         ]
       }
     ],
     education: [
       {
         institution: "Uniwersytet Szczeciński",
-        degree: "Studia Wyższe",
-        field: "Ekonomia",
-        period: "Szczecin, Polska",
-        description: "Wykształcenie ekonomiczne dało mi dogłębne zrozumienie analizy ilościowej, mechanizmów finansowo-księgowych oraz procesów biznesowych. Stanowi ono kluczowy atut przy tworzeniu zaawansowanego oprogramowania dedykowanego finansom, kadrom i zarządzaniu kapitałem."
+        faculty: "Wydział Nauk Ekonomicznych i Zarządzania",
+        degree: "Tytuł magistra ekonomii",
+        field: "specjalizacja: handel zagraniczny",
+        period: "2004 – 2009",
+        description: "Ukończenie 5-letnich studiów magisterskich z zakresu ekonomii i handlu zagranicznego. Znajomość procesów makroekonomicznych, bilansów finansowych i analizy ilościowej."
+      },
+      {
+        institution: "Zespół Szkół Ogólnokształcących w Goleniowie",
+        faculty: "Klasa Matematyczno - Informatyczna",
+        degree: "Świadectwo dojrzałości",
+        field: "profil matematyczno-informatyczny",
+        period: "2000 – 2004",
+        description: "Rozszerzony program matematyki, logiki oraz podstaw programowania i algorytmiki."
       }
     ],
     languages: [
       { name: "Język polski", level: "Ojczysty (Native)" },
-      { name: "Język angielski", level: "B2 / C1 – Płynna komunikacja techniczna i biznesowa" }
+      { name: "Język angielski", level: "Komunikacja techniczna i dokumentacja (Professional working proficiency)" }
     ],
-    rodo: "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych (RODO)."
+    rodo: "Wyrażam zgodę na przetwarzanie moich danych osobowych w celu prowadzenia rekrutacji na aplikowane przeze mnie stanowisko. Wyrażam również zgodę na przetwarzanie moich danych osobowych w celu prowadzenia przyszłych rekrutacji."
   },
 
   en: {
@@ -130,11 +162,13 @@ const cvData = {
       printBtn: "Print / Save PDF",
       updated: "Last updated",
       contactTitle: "Contact Information",
-      skillsTitle: "Technical Skills",
-      experienceTitle: "Professional Experience & Projects",
+      skillsTitle: "Skills & Technologies",
+      experienceTitle: "Professional Experience",
+      projectsTitle: "Key Projects",
       educationTitle: "Education",
       languagesTitle: "Languages",
-      aboutTitle: "Professional Summary",
+      aboutTitle: "About Me",
+      competenciesTitle: "Key Strengths & Competencies",
       keyAchievementsTitle: "Key Responsibilities & Achievements:",
       printModal: {
         title: "Print / Save to PDF",
@@ -150,98 +184,128 @@ const cvData = {
     personal: {
       name: "Artur Petrusiewicz",
       title: "Senior Fullstack Developer",
-      subtitle: "10+ years of commercial experience engineering & deploying mission-critical enterprise systems",
+      subtitle: "10+ years of professional experience · Java (Spring Boot) · TypeScript (Angular) · PostgreSQL",
       location: "Warsaw, Poland / Remote",
+      phone: "+48 790 431 020",
+      phoneRaw: "+48790431020",
       email: "pecixx@gmail.com",
+      website: "petrusiewicz.pl",
+      websiteUrl: "https://petrusiewicz.pl",
+      linkedin: "linkedin.com/in/artur-petrusiewicz",
+      linkedinUrl: "https://linkedin.com/in/artur-petrusiewicz",
       github: "https://github.com/pecix",
       githubUser: "github.com/pecix",
-      about: "Accomplished Senior Fullstack Developer with over 10 years of experience in software engineering and enterprise architecture for mission-critical systems. Specializing in designing resilient, highly performant web applications using the Java ecosystem (Spring Boot), relational databases (PostgreSQL), and modern front-end technologies (Angular, TypeScript).\n\nPossesses a rare blend of deep technical mastery and an educational background in Economics, enabling seamless communication with stakeholders, precise modeling of complex financial/budgeting domains, and strict compliance with legal/auditing standards. Architected and successfully deployed nationwide, production-grade enterprise solutions for the Polish Prison Service (comprehensive personnel & service records management, alongside statutory budget and inmate deposit accounting)."
+      photo: "artur-petrusiewicz.png",
+      about: "Accomplished Senior Fullstack Developer with over 10 years of professional track record, uniting mission-critical enterprise software engineering with an academic degree in Economics and hands-on domain expertise in public finance and statutory accounting.\n\nGuided by the principle: 'The road to success is always under construction'. Characterized by high commitment, strong interpersonal communication, resilience under pressure, and dedicated craftsmanship.\n\nSpecialized in engineering robust, performant, and secure web platforms using the Java ecosystem (Spring Boot, Kotlin), relational databases (PostgreSQL), and modern front-end technologies (Angular, TypeScript). As a lead engineer at the Central Board of the Prison Service, co-architected and delivered nationwide enterprise systems including statutory Financial & Accounting, HR & Payroll, and Electronic Medical Referrals (e-skierowania)."
     },
     skills: [
       {
         category: "Backend & Architecture",
-        items: ["Java", "Spring Boot", "Spring Data / JPA", "Hibernate", "RESTful APIs", "Enterprise Architecture", "Microservices", "Application Security (Spring Security)"]
+        items: ["JAVA", "Spring Boot", "Kotlin", "Spring Data / JPA", "Hibernate", "Keycloak", "Spring Security", "RESTful APIs", "Enterprise Architecture"]
       },
       {
         category: "Databases & SQL",
-        items: ["PostgreSQL", "Advanced SQL", "Relational Data Modeling", "Query & Index Optimization", "Stored Procedures", "ACID Transactions"]
+        items: ["SQL", "PostgreSQL", "Relational Data Modeling", "Query & Index Optimization", "Stored Procedures", "ACID Transactions"]
       },
       {
         category: "Frontend & Web",
-        items: ["TypeScript", "Angular", "HTML5", "CSS3 / SCSS", "Responsive Web Design (RWD)", "State Management", "API Integration / RxJS"]
+        items: ["TypeScript", "JavaScript", "Angular", "HTML5", "CSS3 / SCSS", "Responsive Web Design (RWD)", "State Management / RxJS"]
       },
       {
-        category: "Engineering & Methodologies",
-        items: ["Git / GitHub", "Maven / Gradle", "Docker", "Clean Code & SOLID Principles", "Unit & Integration Testing", "Agile / Scrum", "Data Privacy & Confidential Data Handling"]
+        category: "Testing & Tooling",
+        items: ["IDEA IntelliJ", "VS Code", "GIT / GitHub", "JUnit", "Cypress", "Docker", "Maven", "Code Review"]
       }
+    ],
+    competencies: [
+      "Technical, conceptual, and creative systems thinking",
+      "Analytical capacity & architectural planning",
+      "High work ethic, proactive organization, and teamwork",
+      "Strong executive presence and communication skills",
+      "Consistency, execution precision, and resilience under pressure",
+      "Initiative, autonomy, and ownership of deliverable outcomes"
     ],
     experience: [
       {
-        role: "Senior Fullstack Developer / Lead Software Engineer",
-        company: "Prison Service / Government & Enterprise Systems",
-        period: "2014 – Present",
+        role: "IT & Telecommunications Bureau Instructor / Senior Fullstack Developer",
+        company: "Central Board of the Prison Service (CZSW)",
+        period: "2019 – Present",
         location: "Warsaw, Poland",
-        projectBadge: "Mission-Critical Systems",
-        description: "Architected, developed, and deployed nationwide enterprise software systems serving thousands of active operational users across correctional facilities across Poland.",
-        projects: [
-          {
-            name: "Financial & Accounting Enterprise System (Prison Service)",
-            role: "Architecture & Fullstack Development (Java, Spring Boot, PostgreSQL, Angular)",
-            summary: "Nationwide enterprise software for statutory budget accounting and financial deposit management for incarcerated individuals.",
-            points: [
-              "Designed and deployed the central budget accounting engine conforming to national public finance regulations and auditing frameworks.",
-              "Implemented an immutable, auditable inmate deposit accounting module managing bailiff deductions, alimony allocations, and financial disbursements.",
-              "Guaranteed strict ACID transactional consistency and comprehensive event logging across PostgreSQL databases.",
-              "Crafted a high-throughput, ergonomic user interface in Angular & TypeScript used daily by financial department specialists nationwide."
-            ]
-          },
-          {
-            name: "Personnel & Human Resources Management System (Prison Service)",
-            role: "Architecture & Fullstack Development (Java, Spring Boot, PostgreSQL, Angular)",
-            summary: "Centralized HR and service trajectory system managing officers and civilian staff across all penitentiary units.",
-            points: [
-              "Delivered core modules for tracking service progression: organizational charts, military/prison ranks, promotions, remuneration formulas, special allowances, and statutory leaves.",
-              "Automated payroll computations, statutory allowances, and scheduled compliance reports for ministerial oversight.",
-              "Enforced strict Role-Based Access Control (RBAC) and data classification policies for protected sensitive personnel records.",
-              "Optimized PostgreSQL schema and complex analytical reporting queries for senior management decision-making."
-            ]
-          }
+        projectBadge: "Prison Service Headquarters",
+        description: "Designing, engineering, and maintaining nationwide enterprise software for prison administration operations. Collaborating with software engineering squads, conducting code reviews, participating in architectural design reviews, and co-shaping features with Product Owners.",
+        points: [
+          "Developed and maintained enterprise web applications on Spring Boot, Angular, and PostgreSQL.",
+          "Championed code reviews and clean code standards (SOLID, design patterns) across distributed teams.",
+          "Co-authored technical specifications and software requirements in tight alignment with Product Owners and executive leadership.",
+          "Implemented central identity management and security protocols (Keycloak, RBAC) for classified and protected data."
         ]
       },
       {
-        role: "Senior Fullstack Software Engineer",
-        company: "Commercial Projects & IT Consulting",
-        period: "10+ Years Track Record",
-        location: "Warsaw / Remote",
-        projectBadge: "Fullstack Engineering",
-        description: "Long-standing engineering practice delivering tailored enterprise web platforms, custom integrations, and database performance tuning.",
-        projects: [
-          {
-            name: "Enterprise Web Systems & API Development",
-            role: "Fullstack Engineer",
-            summary: "Comprehensive software lifecycle execution from business analysis to production deployment.",
-            points: [
-              "Engineered scalable Java/Spring Boot backend architectures applying clean design patterns and domain-driven design principles.",
-              "Developed responsive, accessible, and fast single-page applications using Angular, TypeScript, and modern CSS.",
-              "Tuned database queries, indexes, and connection pools to eliminate latency and ensure high availability."
-            ]
-          }
+        role: "Financial Department Specialist",
+        company: "Remand Prison in Szczecin (Areszt Śledczy)",
+        period: "2011 – 2019",
+        location: "Szczecin, Poland",
+        projectBadge: "Finance & Accounting",
+        description: "8 years of operational responsibility in statutory public finance, payroll, and inmate deposit accounts, providing foundational domain knowledge for architecting financial and HR software systems.",
+        points: [
+          "Managed budgetary accounting and financial reporting for penitentiary facilities.",
+          "Processed payroll runs for officers and civilian employees.",
+          "Administered bailiff garnishments, legal deductions, and inmate deposit funds.",
+          "Prepared official tax and social security reporting documentation (including PIT-11, PIT-8c, ZUS-RP7)."
+        ]
+      }
+    ],
+    projects: [
+      {
+        name: "Financial & Accounting Enterprise System",
+        stack: "Java Spring Boot · Keycloak · PostgreSQL · Angular",
+        summary: "Nationwide core platform managing budget accounting and inmate deposit funds across correctional facilities.",
+        points: [
+          "Engineered full statutory budget accounting engine using Spring Boot and Angular.",
+          "Built a secure inmate deposit ledger with automated judicial and alimony deduction routines.",
+          "Integrated Keycloak central IAM and tuned high-throughput PostgreSQL queries."
+        ]
+      },
+      {
+        name: "HR & Payroll Management System",
+        stack: "Java Spring Boot · Angular · PostgreSQL",
+        summary: "Centralized personnel records and service trajectory system for prison officers and staff.",
+        points: [
+          "Developed modules for tracking officer rank progression, postings, allowances, and statutory benefits.",
+          "Updated payroll computation formulas and administrative reporting according to legislative updates."
+        ]
+      },
+      {
+        name: "Electronic Medical Referrals (e-skierowania)",
+        stack: "Java / Kotlin · Spring Boot · PostgreSQL",
+        summary: "Digital medical referral system streamlining inmate healthcare workflows.",
+        points: [
+          "Implemented resilient backend microservices in Java / Kotlin with Spring Boot and PostgreSQL.",
+          "Enforced strict healthcare data confidentiality and audit trails."
         ]
       }
     ],
     education: [
       {
         institution: "University of Szczecin",
-        degree: "Higher Education Degree",
-        field: "Economics",
-        period: "Szczecin, Poland",
-        description: "The academic background in Economics provided deep analytical training, quantitative modeling skills, and an in-depth understanding of financial accounting and business operations—serving as a cornerstone for engineering mission-critical financial and personnel software systems."
+        faculty: "Faculty of Economics and Management",
+        degree: "Master's Degree in Economics (M.Sc.)",
+        field: "Specialization: Foreign Trade",
+        period: "2004 – 2009",
+        description: "5-year comprehensive university program in Economics and Foreign Trade. Quantitative analysis, public finance, and corporate accounting principles."
+      },
+      {
+        institution: "Secondary Comprehensive School in Goleniów (ZSO)",
+        faculty: "Mathematics & Computer Science Profile",
+        degree: "Matura Certificate",
+        field: "Mathematics & Computer Science",
+        period: "2000 – 2004",
+        description: "Advanced curriculum in mathematics, algorithms, and fundamental computer programming."
       }
     ],
     languages: [
       { name: "Polish", level: "Native proficiency" },
-      { name: "English", level: "B2 / C1 – Professional working proficiency (technical & business)" }
+      { name: "English", level: "Technical communication & documentation (Professional working proficiency)" }
     ],
-    rodo: "I hereby consent to my personal data being processed for the purpose of recruitment in accordance with the applicable Personal Data Protection Act and General Data Protection Regulation (GDPR)."
+    rodo: "Wyrażam zgodę na przetwarzanie moich danych osobowych w celu prowadzenia rekrutacji na aplikowane przeze mnie stanowisko. Wyrażam również zgodę na przetwarzanie moich danych osobowych w celu prowadzenia przyszłych rekrutacji."
   }
 };

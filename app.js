@@ -17,26 +17,33 @@
     printBtn: document.getElementById("btn-print"),
     printBtnText: document.getElementById("btn-print-text"),
 
-    // Personal info
+    // Personal info & Contact
     candidateName: document.getElementById("candidate-name"),
     candidateTitle: document.getElementById("candidate-title"),
     candidateSubtitle: document.getElementById("candidate-subtitle"),
-    badgeMonogram: document.getElementById("badge-monogram"),
+    candidatePhoto: document.getElementById("candidate-photo"),
     locationText: document.getElementById("location-text"),
+    phoneLink: document.getElementById("phone-link"),
     emailLink: document.getElementById("email-link"),
+    websiteLink: document.getElementById("website-link"),
+    linkedinLink: document.getElementById("linkedin-link"),
     githubLink: document.getElementById("github-link"),
 
     // Section Titles
     aboutTitle: document.getElementById("about-title"),
     skillsTitle: document.getElementById("skills-title"),
+    competenciesTitle: document.getElementById("competencies-title"),
     experienceTitle: document.getElementById("experience-title"),
+    projectsTitle: document.getElementById("projects-title"),
     educationTitle: document.getElementById("education-title"),
     languagesTitle: document.getElementById("languages-title"),
 
     // Containers
     summaryContainer: document.getElementById("summary-container"),
     skillsContainer: document.getElementById("skills-container"),
+    competenciesContainer: document.getElementById("competencies-container"),
     experienceContainer: document.getElementById("experience-container"),
+    projectsContainer: document.getElementById("projects-container"),
     educationContainer: document.getElementById("education-container"),
     languagesContainer: document.getElementById("languages-container"),
     rodoContainer: document.getElementById("rodo-container"),
@@ -81,20 +88,47 @@
     elements.candidateName.textContent = data.personal.name;
     elements.candidateTitle.textContent = data.personal.title;
     elements.candidateSubtitle.textContent = data.personal.subtitle;
+    if (elements.candidatePhoto && data.personal.photo) {
+      elements.candidatePhoto.src = data.personal.photo;
+    }
+
+    // Contact bar
     elements.locationText.textContent = data.personal.location;
-    elements.emailLink.textContent = data.personal.email;
-    elements.emailLink.href = `mailto:${data.personal.email}`;
-    elements.githubLink.textContent = data.personal.githubUser;
-    elements.githubLink.href = data.personal.github;
+    if (elements.phoneLink) {
+      elements.phoneLink.textContent = data.personal.phone;
+      elements.phoneLink.href = `tel:${data.personal.phoneRaw || data.personal.phone}`;
+    }
+    if (elements.emailLink) {
+      elements.emailLink.textContent = data.personal.email;
+      elements.emailLink.href = `mailto:${data.personal.email}`;
+    }
+    if (elements.websiteLink) {
+      elements.websiteLink.textContent = data.personal.website;
+      elements.websiteLink.href = data.personal.websiteUrl;
+    }
+    if (elements.linkedinLink) {
+      elements.linkedinLink.textContent = data.personal.linkedin.replace("linkedin.com/", "");
+      elements.linkedinLink.href = data.personal.linkedinUrl;
+    }
+    if (elements.githubLink) {
+      elements.githubLink.textContent = data.personal.githubUser;
+      elements.githubLink.href = data.personal.github;
+    }
 
     // Section Titles
     elements.aboutTitle.textContent = data.meta.aboutTitle;
     elements.skillsTitle.textContent = data.meta.skillsTitle;
+    if (elements.competenciesTitle && data.meta.competenciesTitle) {
+      elements.competenciesTitle.textContent = data.meta.competenciesTitle;
+    }
     elements.experienceTitle.textContent = data.meta.experienceTitle;
+    if (elements.projectsTitle && data.meta.projectsTitle) {
+      elements.projectsTitle.textContent = data.meta.projectsTitle;
+    }
     elements.educationTitle.textContent = data.meta.educationTitle;
     elements.languagesTitle.textContent = data.meta.languagesTitle;
 
-    // Professional Summary
+    // Professional Summary / O mnie
     const paragraphs = data.personal.about
       .split("\n\n")
       .map(p => `<p>${escapeHTML(p)}</p>`)
@@ -116,24 +150,19 @@
       })
       .join("");
 
-    // Experience & Projects
+    // Competencies / Cechy i mocne strony
+    if (elements.competenciesContainer && data.competencies) {
+      elements.competenciesContainer.innerHTML = data.competencies
+        .map(comp => `<div class="competency-item"><span>${escapeHTML(comp)}</span></div>`)
+        .join("");
+    }
+
+    // Professional Experience
     elements.experienceContainer.innerHTML = data.experience
       .map(exp => {
-        const projectsHTML = exp.projects
-          .map(proj => {
-            const pointsHTML = proj.points
-              .map(pt => `<li>${escapeHTML(pt)}</li>`)
-              .join("");
-            return `
-              <div class="project-card">
-                <div class="project-title">${escapeHTML(proj.name)}</div>
-                <div class="project-role-stack">${escapeHTML(proj.role)}</div>
-                <div class="project-summary">${escapeHTML(proj.summary)}</div>
-                <ul class="project-points">${pointsHTML}</ul>
-              </div>
-            `;
-          })
-          .join("");
+        const pointsHTML = exp.points
+          ? `<ul class="project-points" style="margin-top: 8px;">${exp.points.map(pt => `<li>${escapeHTML(pt)}</li>`).join("")}</ul>`
+          : "";
 
         return `
           <article class="experience-item">
@@ -148,19 +177,38 @@
               ${exp.projectBadge ? `<span class="badge-tag">${escapeHTML(exp.projectBadge)}</span>` : ""}
             </div>
             <p class="exp-overview">${escapeHTML(exp.description)}</p>
-            ${projectsHTML}
+            ${pointsHTML}
           </article>
         `;
       })
       .join("");
 
+    // Key Projects
+    if (elements.projectsContainer && data.projects) {
+      elements.projectsContainer.innerHTML = data.projects
+        .map(proj => {
+          const pointsHTML = proj.points
+            .map(pt => `<li>${escapeHTML(pt)}</li>`)
+            .join("");
+          return `
+            <div class="project-card" style="margin-bottom: 12px;">
+              <div class="project-title">${escapeHTML(proj.name)}</div>
+              <div class="project-role-stack">${escapeHTML(proj.stack)}</div>
+              <div class="project-summary">${escapeHTML(proj.summary)}</div>
+              <ul class="project-points">${pointsHTML}</ul>
+            </div>
+          `;
+        })
+        .join("");
+    }
+
     // Education
     elements.educationContainer.innerHTML = data.education
       .map(edu => `
-        <div class="edu-card">
+        <div class="edu-card" style="margin-bottom: 12px;">
           <div class="edu-institution">${escapeHTML(edu.institution)}</div>
-          <div class="edu-degree">${escapeHTML(edu.degree)} – ${escapeHTML(edu.field)}</div>
-          <div class="edu-period">📍 ${escapeHTML(edu.period)}</div>
+          <div class="edu-degree">${escapeHTML(edu.faculty ? edu.faculty + ' · ' : '')}${escapeHTML(edu.degree)}</div>
+          <div class="edu-period">📍 ${escapeHTML(edu.period)} · ${escapeHTML(edu.field)}</div>
           <p class="edu-desc">${escapeHTML(edu.desc || edu.description)}</p>
         </div>
       `)
@@ -229,12 +277,8 @@
   }
 
   function buildFullStandaloneHtml() {
-    // Clone document with inlined stylesheet so it renders identically anywhere
     const styles = Array.from(document.querySelectorAll("style, link[rel='stylesheet']"))
-      .map(tag => {
-        if (tag.tagName.toLowerCase() === "style") return tag.outerHTML;
-        return tag.outerHTML;
-      })
+      .map(tag => tag.outerHTML)
       .join("\n");
 
     const cvContainer = document.querySelector(".cv-container").outerHTML;
@@ -247,7 +291,6 @@
   <title>${escapeHTML(document.title)}</title>
   ${styles}
   <style>
-    /* Ensure clean direct print view */
     body { padding: 20px 0; }
     .direct-print-bar {
       max-width: 900px;
@@ -297,27 +340,21 @@
     setTimeout(() => URL.revokeObjectURL(blobUrl), 3000);
   }
 
-  // Handle Print button click
   function handlePrint() {
-    // If inside an iframe or on a mobile/tablet touch device, always open the helpful modal
     if (isIframe || isTouchOrMobile) {
-      // Also try calling window.print() inside a try/catch just in case the browser allows it
       try {
         window.print();
-      } catch (err) {
-        console.warn("window.print() blocked in iframe:", err);
-      }
+      } catch (e) {}
       showModal();
     } else {
       try {
         window.print();
-      } catch (err) {
+      } catch (e) {
         showModal();
       }
     }
   }
 
-  // Event Listeners
   elements.langPlBtn.addEventListener("click", () => {
     currentLang = "pl";
     localStorage.setItem("preferred_lang", "pl");
@@ -332,28 +369,18 @@
 
   elements.printBtn.addEventListener("click", handlePrint);
 
-  if (elements.modalClose) {
-    elements.modalClose.addEventListener("click", hideModal);
-  }
-
+  if (elements.modalClose) elements.modalClose.addEventListener("click", hideModal);
   if (elements.printModal) {
     elements.printModal.addEventListener("click", e => {
       if (e.target === elements.printModal) hideModal();
     });
   }
-
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") hideModal();
   });
 
-  if (elements.btnOpenTab) {
-    elements.btnOpenTab.addEventListener("click", openInNewTab);
-  }
+  if (elements.btnOpenTab) elements.btnOpenTab.addEventListener("click", openInNewTab);
+  if (elements.btnDownloadHtml) elements.btnDownloadHtml.addEventListener("click", downloadHtmlFile);
 
-  if (elements.btnDownloadHtml) {
-    elements.btnDownloadHtml.addEventListener("click", downloadHtmlFile);
-  }
-
-  // Initial Render
   renderCV(currentLang);
 })();
