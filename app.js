@@ -287,6 +287,17 @@
     });
   }
 
+  // Ensure dark mode never affects print rendering across any browser or device
+  window.addEventListener("beforeprint", () => {
+    document.documentElement.removeAttribute("data-theme");
+  });
+
+  window.addEventListener("afterprint", () => {
+    if (currentTheme) {
+      document.documentElement.setAttribute("data-theme", currentTheme);
+    }
+  });
+
   // Direct print trigger (without modal prompt)
   elements.printBtn.addEventListener("click", () => {
     window.print();
