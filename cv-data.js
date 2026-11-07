@@ -63,11 +63,11 @@ const cvData = {
     ],
     experience: [
       {
-        role: "Instruktor Biura Informatyki i Łączności / Senior Fullstack Developer",
+        role: "Specjalista Biura Informatyki i Łączności / Senior Fullstack Developer",
         company: "Centralny Zarząd Służby Więziennej",
         period: "2019 – obecnie",
         location: "Warszawa / Polska",
-        projectBadge: "Służba Więzienna",
+        projectBadge: "Biuro Informatyki i Łączności",
         description: "Projektowanie, wytwarzanie i utrzymywanie oprogramowania na wewnętrzne potrzeby formacji. Praca w zespole inżynierów oprogramowania, prowadzenie code review, udział w spotkaniach architektonicznych i współtworzenie koncepcji wdrażanych programów z Product Ownerami.",
         points: [
           "Tworzenie i długoterminowe utrzymywanie systemów webowych klasy Enterprise w architekturze Spring Boot + Angular + PostgreSQL.",
@@ -81,7 +81,7 @@ const cvData = {
         company: "Areszt Śledczy w Szczecinie",
         period: "2011 – 2019",
         location: "Szczecin, Polska",
-        projectBadge: "Finanse & Księgowość",
+        projectBadge: "Dział Finansowy",
         description: "Wieloletnia praca operacyjna w obszarze księgowości budżetowej, kadr i płac, stanowiąca fundament późniejszego sukcesu przy projektowaniu i wdrażaniu systemów informatycznych dla całego więziennictwa.",
         points: [
           "Prowadzenie bieżącej księgowości budżetowej jednostki penitencjarnej.",
