@@ -21,8 +21,6 @@ python3 -m http.server 8000
 ```
 Następnie przejdź pod adres `http://localhost:8000`.
 
-## 🌐 Publikacja na GitHub Pages
-1. Przejdź do ustawień repozytorium na GitHubie: **Settings** -> **Pages**.
-2. W sekcji **Build and deployment** wybierz gałąź `main` oraz folder `/ (root)`.
-3. Kliknij **Save**. Twoja strona będzie dostępna publicznie pod adresem:
-   `https://pecix.github.io/ag-test-resume/`
+## 🌐 Dostępność na żywo (GitHub Pages)
+Strona jest wdrożona i dostępna publicznie pod adresem:
+👉 **[https://pecix.github.io/resume/](https://pecix.github.io/resume/)**
