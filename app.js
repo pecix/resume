@@ -61,6 +61,10 @@
     if (elements.printBtnText) {
       elements.printBtnText.textContent = data.meta.printBtn;
     }
+    if (elements.printBtn) {
+      elements.printBtn.title = data.meta.printBtn;
+      elements.printBtn.setAttribute("aria-label", data.meta.printBtn);
+    }
 
     if (lang === "pl") {
       elements.langPlBtn.classList.add("active");
