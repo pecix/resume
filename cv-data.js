@@ -93,10 +93,12 @@ const cvData = {
     ],
     projects: [
       {
-        name: "Projektowanie i tworzenie systemu finansowo-księgowego",
-        stack: "Java Spring Boot · Keycloak · PostgreSQL · Angular",
-        summary: "Ogólnokrajowy system centralny do obsługi księgowości budżetowej jednostek penitencjarnych oraz gospodarki depozytowej osób pozbawionych wolności (koordynator projektu).",
+        name: "Projektowanie i tworzenie systemu finansowo-księgowego (Koordynator projektu)",
+        stack: "Koordynacja projektu · Java Spring Boot · Keycloak · PostgreSQL · Angular",
+        summary: "Ogólnokrajowy system centralny do obsługi księgowości budżetowej jednostek penitencjarnych oraz gospodarki depozytowej osób pozbawionych wolności. Rola koordynatora projektu łącząca odpowiedzialność techniczną z zarządzaniem realizacją.",
         points: [
+          "Koordynacja prac zespołu projektowego, planowanie i bieżąca kontrola harmonogramu prac oraz podział zadań i priorytetów.",
+          "Bezpośrednia współpraca z klientami biznesowymi i interesariuszami (zbieranie wymagań, uzgadnianie zakresu, prezentacja postępów prac).",
           "Zaprojektowanie i wdrożenie modułu księgowości budżetowej w oparciu o Spring Boot i Angular.",
           "Stworzenie bezpiecznego podsystemu depozytowego osób pozbawionych wolności z obsługą potrąceń komorniczych i wypłat.",
           "Integracja z centralnym serwerem tożsamości Keycloak oraz optymalizacja zapytań w bazie PostgreSQL."
@@ -236,10 +238,12 @@ const cvData = {
     ],
     projects: [
       {
-        name: "Financial & Accounting Enterprise System",
-        stack: "Java Spring Boot · Keycloak · PostgreSQL · Angular",
-        summary: "Nationwide core platform managing budget accounting and inmate deposit funds across correctional facilities (Project Coordinator).",
+        name: "Financial & Accounting Enterprise System (Project Coordinator)",
+        stack: "Project Coordination · Java Spring Boot · Keycloak · PostgreSQL · Angular",
+        summary: "Nationwide core platform managing budget accounting and inmate deposit funds across correctional facilities. Served as Project Coordinator, combining technical ownership with delivery management.",
         points: [
+          "Managed the project team, created and tracked work schedules, and coordinated task allocation and delivery priorities.",
+          "Led direct communication with business clients and key stakeholders (requirements gathering, scope alignment, and progress reviews).",
           "Engineered full statutory budget accounting engine using Spring Boot and Angular.",
           "Built a secure inmate deposit ledger with automated judicial and alimony deduction routines.",
           "Integrated Keycloak central IAM and tuned high-throughput PostgreSQL queries."
