@@ -125,6 +125,22 @@ const cvData = {
     ],
     education: [
       {
+        institution: "Securitum / Sekurak",
+        faculty: "Szkolenie specjalistyczne",
+        degree: "Websecurity Master",
+        field: "Bezpieczeństwo aplikacji webowych",
+        period: "2025",
+        description: "Kompleksowy, 12-sesyjny kurs praktyczny (moduł podstawowy i zaawansowany z zadaniami LAB) prowadzony przez pentesterów Securitum. Zakres: OWASP Top 10, bezpieczeństwo REST API (OAuth2, SSRF, XXE), podatności frontendowe (XSS, CSRF), SQL/NoSQL Injection, testy bezpieczeństwa z wykorzystaniem Burp Suite oraz projektowanie bezpiecznego kodu."
+      },
+      {
+        institution: "Laba (Międzynarodowa Szkoła Biznesu)",
+        faculty: "Kurs certyfikowany",
+        degree: "Kierownik projektów IT (IT Project Manager)",
+        field: "Zarządzanie projektami IT",
+        period: "2024",
+        description: "Praktyczne szkolenie z kompleksowego zarządzania projektami informatycznymi w całym cyklu życia (inicjacja, planowanie, realizacja, kontrola i zamknięcie). Obejmuje podejścia zwinne (Agile/Scrum), klasyczne i hybrydowe, budowanie harmonogramu, zarządzanie budżetem i ryzykiem oraz kierowanie zespołem i komunikację z interesariuszami biznesowymi."
+      },
+      {
         institution: "Uniwersytet Szczeciński",
         faculty: "Wydział Nauk Ekonomicznych i Zarządzania",
         degree: "Tytuł magistra ekonomii",
@@ -269,6 +285,22 @@ const cvData = {
       }
     ],
     education: [
+      {
+        institution: "Securitum / Sekurak",
+        faculty: "Specialized Training",
+        degree: "Websecurity Master",
+        field: "Web Application Security",
+        period: "2025",
+        description: "Comprehensive 12-session hands-on program (Foundation & Advanced modules with practical labs) led by Securitum penetration testers. Covered OWASP Top 10, REST API security (OAuth2, SSRF, XXE), client-side vulnerabilities (XSS, CSRF), SQL/NoSQL Injection, Burp Suite testing, and secure coding practices."
+      },
+      {
+        institution: "Laba (International Business School)",
+        faculty: "Certified Course",
+        degree: "IT Project Manager",
+        field: "IT Project Management",
+        period: "2024",
+        description: "Practical training covering the full IT project lifecycle (initiation, planning, execution, monitoring, and closure). Focused on Agile/Scrum, predictive and hybrid methodologies, scheduling, budget and risk management, team leadership, and business stakeholder communication."
+      },
       {
         institution: "University of Szczecin",
         faculty: "Faculty of Economics and Management",
