@@ -68,7 +68,7 @@ const cvData = {
         period: "2019 – obecnie",
         location: "Warszawa / Polska",
         projectBadge: "Biuro Informatyki i Łączności",
-        description: "Projektowanie, wytwarzanie i utrzymywanie oprogramowania na wewnętrzne potrzeby formacji. Praca w zespole inżynierów oprogramowania, prowadzenie code review, udział w spotkaniach architektonicznych i współtworzenie koncepcji wdrażanych programów z Product Ownerami.",
+        description: "Projektowanie, wytwarzanie i utrzymywanie oprogramowania na wewnętrzne potrzeby formacji, w tym pełnienie roli koordynatora projektu systemu finansowo-księgowego. Praca w zespole inżynierów oprogramowania, prowadzenie code review, udział w spotkaniach architektonicznych i współtworzenie koncepcji wdrażanych programów z Product Ownerami.",
         points: [
           "Tworzenie i długoterminowe utrzymywanie systemów webowych klasy Enterprise w architekturze Spring Boot + Angular + PostgreSQL.",
           "Współpraca w zespołach programistycznych, realizacja procesów Code Review i dbałość o standardy czystego kodu (Clean Code, SOLID).",
@@ -95,7 +95,7 @@ const cvData = {
       {
         name: "Projektowanie i tworzenie systemu finansowo-księgowego",
         stack: "Java Spring Boot · Keycloak · PostgreSQL · Angular",
-        summary: "Ogólnokrajowy system centralny do obsługi księgowości budżetowej jednostek penitencjarnych oraz gospodarki depozytowej osób pozbawionych wolności.",
+        summary: "Ogólnokrajowy system centralny do obsługi księgowości budżetowej jednostek penitencjarnych oraz gospodarki depozytowej osób pozbawionych wolności (koordynator projektu).",
         points: [
           "Zaprojektowanie i wdrożenie modułu księgowości budżetowej w oparciu o Spring Boot i Angular.",
           "Stworzenie bezpiecznego podsystemu depozytowego osób pozbawionych wolności z obsługą potrąceń komorniczych i wypłat.",
@@ -211,7 +211,7 @@ const cvData = {
         period: "2019 – Present",
         location: "Warsaw, Poland",
         projectBadge: "Prison Service Headquarters",
-        description: "Designing, engineering, and maintaining nationwide enterprise software for prison administration operations. Collaborating with software engineering squads, conducting code reviews, participating in architectural design reviews, and co-shaping features with Product Owners.",
+        description: "Designing, engineering, and maintaining nationwide enterprise software for prison administration operations, including serving as Project Coordinator for the Financial & Accounting System. Collaborating with software engineering squads, conducting code reviews, participating in architectural design reviews, and co-shaping features with Product Owners.",
         points: [
           "Developed and maintained enterprise web applications on Spring Boot, Angular, and PostgreSQL.",
           "Championed code reviews and clean code standards (SOLID, design patterns) across distributed teams.",
@@ -238,7 +238,7 @@ const cvData = {
       {
         name: "Financial & Accounting Enterprise System",
         stack: "Java Spring Boot · Keycloak · PostgreSQL · Angular",
-        summary: "Nationwide core platform managing budget accounting and inmate deposit funds across correctional facilities.",
+        summary: "Nationwide core platform managing budget accounting and inmate deposit funds across correctional facilities (Project Coordinator).",
         points: [
           "Engineered full statutory budget accounting engine using Spring Boot and Angular.",
           "Built a secure inmate deposit ledger with automated judicial and alimony deduction routines.",
